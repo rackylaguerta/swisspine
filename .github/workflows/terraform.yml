@@ -15,4 +15,5 @@ steps:
 - script: |
     cd terraform/
     terraform init
+    terraform plan -out main.tf
   displayName: 'Terraform Init'
