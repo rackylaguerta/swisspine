@@ -1,19 +1,40 @@
-# Starter pipeline
-# Start with a minimal pipeline that you can customize to build and deploy your code.
-# Add steps that build, run tests, deploy, and more:
-# https://aka.ms/yaml
+name: DevOps Engineering Test
 
 trigger:
 - master
 
 pool:
-  vmImage: ubuntu-latest
+  vmImage: 'ubuntu-latest'
 
-steps:
-- script: echo Hello, world!
-  displayName: 'Run a one-line script'
+jobs:
+- job: unittest
+  displayName: 'Run unittest'
+  pool:
+    vmImage: 'ubuntu-latest'
+  steps:
+  - checkout: self
+  - task: UsePythonVersion@0
+    inputs:
+      versionSpec: '3.9.19'
+      addToPath: true
+  - script: python -m unittest unittest/test.py
 
-- script: |
-    echo Add other tasks to build, test, and deploy your project.
-    echo See https://aka.ms/yaml
-  displayName: 'Run a multi-line script'
+- job: build_and_push
+  displayName: 'Build and Push'
+  dependsOn: unittest
+  condition: eq(variables['Build.SourceBranch'], 'refs/heads/master')
+  pool:
+    vmImage: 'ubuntu-latest'
+  steps:
+  - checkout: self
+  - script: |
+      echo "sha_short=$(Build.SourceVersion)" >> $(Build.SourcesDirectory)/env_vars
+    displayName: 'Create image tag'
+  - task: Docker@2
+    inputs:
+      containerRegistry: 'dockerhub-swisspine'
+      repository: 'rackylaguerta14/swisspine'
+      command: 'buildAndPush'
+      tags: |
+        $(Build.SourceVersion)
+      Dockerfile: '$(Build.SourcesDirectory)/Dockerfile'
