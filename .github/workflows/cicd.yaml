@@ -10,7 +10,9 @@ jobs:
         uses: actions/checkout@v4
       
       - name: Run unittest
-        run: python -m unittest unittest/test.py
+        run: |
+          pip install pytest==8.1.1
+          python -m pytest unittest/test.py
 
   build_and_push:
     runs-on: ubuntu-latest

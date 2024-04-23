@@ -1,1 +1,4 @@
 Flask==3.0.3
+azure-identity==1.16.*
+azure-storage-blob==12.10.*
+pytest==8.1.1

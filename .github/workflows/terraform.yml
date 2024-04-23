@@ -15,5 +15,6 @@ steps:
 - script: |
     cd terraform/
     terraform init
-    terraform plan -out main.plan
-  displayName: 'Terraform Init'
+    terraform plan -var-file="vars/dev.tfvars" -out main.plan
+    terraform apply main.plan
+  displayName: 'Terraform Init and Apply'

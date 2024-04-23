@@ -17,7 +17,9 @@ jobs:
     inputs:
       versionSpec: '3.9.19'
       addToPath: true
-  - script: python -m unittest unittest/test.py
+  - script: |
+      pip install pytest==8.1.1
+      python -m pytest unittest/test.py
 
 - job: build_and_push
   displayName: 'Build and Push'

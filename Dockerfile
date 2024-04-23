@@ -8,6 +8,6 @@ RUN pip install -r requirements.txt
 
 EXPOSE 4004
 
-ENV FLASK_APP=myapp.py
+ENV FLASK_APP=app.py
 
 CMD ["flask", "run", "-h", "0.0.0.0", "-p", "4004"]
