@@ -43,9 +43,6 @@ Generates 100 random numbers between 1 and 1000, saves them to a file named `ran
 
 This Azure DevOps pipeline consists of two jobs: one for running unit tests and another for building and pushing Docker images.
 
-The Helm chart being deployed in this pipeline corresponds to the Flask API application.
-
-
 ## Pipeline Structure
 
 ### 1. Run Unit Tests
@@ -83,6 +80,8 @@ To run this pipeline:
 # Helm Chart Deployment Pipeline for AKS
 
 This Azure DevOps pipeline is designed to deploy a Helm chart to an Azure Kubernetes Service (AKS) cluster.
+
+The Helm chart being deployed in this pipeline corresponds to the Flask API application.
 
 ## Pipeline Structure
 
