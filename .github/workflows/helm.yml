@@ -1,0 +1,16 @@
+trigger:
+- none
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+steps:
+- checkout: self
+
+- script: |
+    az login --service-principal -u $(AZURE_SP_APP_ID) -p $(AZURE_SP_PASSWORD) --tenant $(AZURE_TENANT_ID)
+    az account set --subscription $(AZURE_SUBSCRIPTION_ID)
+    cd helm/swisspine
+    helm package .
+    helm upgrade --install swisspine-api ./swisspine-0.1.0.tgz
+  displayName: 'Deploy Helm chart'
