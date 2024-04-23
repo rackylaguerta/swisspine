@@ -28,7 +28,7 @@ def health_check():
 @app.route('/api/upload-random', methods=["POST"])
 def upload_random():
     blob_name = "random_numbers.txt"
-    container_name = "my-container"
+    container_name = "swisspineblobstorage"
     file_path = "random_numbers.txt"
     generate_random_numbers(file_path, 100)
     azure_blob.upload_blob(container_name, blob_name, file_path)

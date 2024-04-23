@@ -32,7 +32,7 @@ Returns a JSON object indicating the status of the application. Always returns `
 **Method**: POST
 
 **Description**:
-Generates 100 random numbers between 1 and 1000, saves them to a file named `random_numbers.txt`, and uploads the file to an Azure Blob Storage container named `my-container`.
+Generates 100 random numbers between 1 and 1000, saves them to a file named `random_numbers.txt`, and uploads the file to an Azure Blob Storage container named `swisspineblobstorage`.
 
 ---
 
