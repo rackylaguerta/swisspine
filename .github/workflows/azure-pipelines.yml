@@ -18,7 +18,7 @@ jobs:
       versionSpec: '3.9.19'
       addToPath: true
   - script: |
-      pip install pytest==8.1.1
+      pip install -r requirements.txt
       python -m pytest unittest/test.py
 
 - job: build_and_push
